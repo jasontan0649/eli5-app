@@ -26,6 +26,11 @@ ${tone}
 Audience:
 ${level}
 
+IMPORTANT LANGUAGE RULE:
+- Detect the language used in the user's topic
+- Reply in the SAME language as the user's input
+- Do not translate unless explicitly asked
+
 Return your response in this exact JSON format:
 {
   "result": "main explanation here",
