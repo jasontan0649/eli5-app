@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const examples = [
   "What is blockchain?",
@@ -24,6 +24,31 @@ export default function Home() {
   const [theme, setTheme] = useState<Theme>("light");
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const savedTone = localStorage.getItem("tone");
+    const savedLevel = localStorage.getItem("level");
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTone) {
+      setTone(savedTone as (typeof tones)[number]);
+    }
+
+    if (savedLevel) {
+      setLevel(savedLevel as (typeof levels)[number]);
+    }
+
+    if (savedTheme) {
+      setTheme(savedTheme as Theme);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("tone", tone);
+    localStorage.setItem("level", level);
+    localStorage.setItem("theme", theme);
+  }, [tone, level, theme]);
+
 
   const themeClasses =
     theme === "light"
